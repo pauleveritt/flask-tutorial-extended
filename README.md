@@ -1,6 +1,6 @@
-# FastAPI Tutorial Extended
+# Flask Tutorial Extended
 
-A FastAPI implementation of the official Django tutorial, extended for PyCharm demo uses.
+A Flask implementation of the official Django tutorial, extended for PyCharm demo uses.
 
 ## Installation
 
