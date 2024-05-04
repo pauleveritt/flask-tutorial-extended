@@ -1,0 +1,8 @@
+-e .
+flask
+sqlalchemy
+black
+uvicorn
+pytest
+requests
+beautifulsoup4
