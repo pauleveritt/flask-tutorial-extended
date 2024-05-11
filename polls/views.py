@@ -1,10 +1,10 @@
 import json
 
-from flask import request
+from flask import request, render_template
 from flask_restx import Resource
 
 from polls import serializers
-from polls.main import db, ns
+from polls.main import db, ns, app
 from polls.models import Question, Choice
 
 
@@ -68,3 +68,9 @@ class QuestionDetail(Resource):
         db.session.delete(question)
         db.session.commit()
         return "", 204
+
+
+# Some HTML routes
+@app.route("/polls/")
+def index():
+    return render_template("index.html")

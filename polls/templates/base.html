@@ -3,13 +3,13 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock %} - Polls</title>
-    <link href="{{ url_for('static', path='styles.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
 <div class="navbar bg-info">
     <div class="navbar-start">
-        <img alt="PyCharm Logo" src="{{ url_for('static', path='images/PyCharm.svg') }}" class="h-auto w-64"/>
+        <img alt="PyCharm Logo" src="{{ url_for('static', filename='images/PyCharm.svg') }}" class="h-auto w-64"/>
     </div>
     <div class="navbar-center">
         <ul class="menu menu-horizontal px-3 text-xl">
@@ -26,7 +26,7 @@
             <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
                 <div class="w-10 rounded-full">
                     <div class="w-10 rounded-full">
-                        <img alt="Profile" id="avatar" src="{{ url_for('static', path='images/man.png') }}"/>
+                        <img alt="Profile" id="avatar" src="{{ url_for('static', filename='images/man.png') }}"/>
                     </div>
                 </div>
             </div>

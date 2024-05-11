@@ -1,28 +1,27 @@
 from polls.models import db, Question, Choice
 
+questions_data = [
+    {
+        "question_text": "What is your favorite color?",
+        "choices": ["Red", "Blue", "Green"],
+    },
+    {
+        "question_text": "What is your favorite animal?",
+        "choices": ["Dog", "Cat", "Bird"],
+    },
+    {
+        "question_text": "Which programming language do you prefer?",
+        "choices": ["Python", "JavaScript", "Java", "C++"],
+    },
+    {
+        "question_text": "What is your favorite movie genre?",
+        "choices": ["Action", "Comedy", "Drama", "Sci-Fi"],
+    },
+]
+
 
 def create_seed_data():
     print("Seeding...")
-    # Sample questions
-    questions_data = [
-        {
-            "question_text": "What is your favorite color?",
-            "choices": ["Red", "Blue", "Green"],
-        },
-        {
-            "question_text": "What is your favorite animal?",
-            "choices": ["Dog", "Cat", "Bird"],
-        },
-        {
-            "question_text": "Which programming language do you prefer?",
-            "choices": ["Python", "JavaScript", "Java", "C++"],
-        },
-        {
-            "question_text": "What is your favorite movie genre?",
-            "choices": ["Action", "Comedy", "Drama", "Sci-Fi"],
-        },
-    ]
-
     # Create questions and choices
     for question_data in questions_data:
         question = Question(question_text=question_data["question_text"])
