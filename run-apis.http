@@ -1,13 +1,17 @@
+# Get HTML home page
+GET http://localhost:5000/polls/
+
+###
 # Get list of questions
 GET http://127.0.0.1:5000/v1/polls/questions
-accept: application/json
+Accept: application/json
 
 
 
 ###
 # Create a new question
 POST http://127.0.0.1:5000/v1/polls/questions
-accept: application/json
+Accept: application/json
 Content-Type: application/json
 
 {
@@ -22,13 +26,13 @@ Content-Type: application/json
 ###
 # Get Question by ID
 GET http://127.0.0.1:5000/v1/polls/questions/1
-accept: application/json
+Accept: application/json
 
 ###
 
 # Update Question by ID
 PUT http://127.0.0.1:5000/v1/polls/questions/1
-accept: application/json
+Accept: application/json
 Content-Type: application/json
 
 {
@@ -44,7 +48,7 @@ Content-Type: application/json
 ###
 # Delete Question by ID
 DELETE http://127.0.0.1:5000/v1/polls/questions/1
-accept: application/json
+Accept: application/json
 
 
 
