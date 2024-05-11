@@ -25,7 +25,6 @@ from polls import views  # noqa: E402
 
 # Create Tables
 with app.app_context():
-    from . import models
     db.create_all()
 
 
