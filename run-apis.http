@@ -1,69 +1,51 @@
-# Get HTML listing at /polls/
-GET http://localhost:8000/polls/
+# Get list of questions
+GET http://127.0.0.1:5000/polls/questions
+accept: application/json
+
+
 
 ###
-
-# Get lists of questions
-GET http://localhost:8000/v1/question/
-
-###
-
-# Get Question with specific ID
-
-GET http://localhost:8000/v1/question/1
-
-###
-
-POST http://localhost:8000/v1/question/
+# Create a new question
+POST http://127.0.0.1:5000/polls/questions
+accept: application/json
 Content-Type: application/json
 
 {
-  "question_text": "This is a sample question",
-  "pub_date": "2022-01-01",
-  "choices": [
-    {
-      "choice_text": "Choice 1"
-    },
-    {
-      "choice_text": "Choice 2"
-    },
-    {
-      "choice_text": "Choice 3"
-    },
-    {
-      "choice_text": "Choice 4"
-    }
-  ]
+    "question_text": "What is your favorite color?",
+    "choices": [
+        "Red",
+        "Blue",
+        "Green"
+    ]
 }
 
 ###
-# Update Question with specific ID
-PUT http://localhost:8000/v1/question/5
+# Get Question by ID
+GET http://127.0.0.1:5000/polls/questions/1
+accept: application/json
+
+###
+
+# Update Question by ID
+PUT http://127.0.0.1:5000/polls/questions/1
+accept: application/json
 Content-Type: application/json
 
 {
-  "question_text": "Sample Testing !",
-  "pub_date": "2023-02-01"
+    "question_text": "Which color you like the most?",
+    "choices": [
+        "Red",
+        "Blue",
+        "Green",
+        "Yellow"
+    ]
 }
 
 ###
-# Delete Question with Specific ID
-DELETE http://localhost:8000/v1/question/5
+# Delete Question by ID
+DELETE http://127.0.0.1:5000/polls/questions/1
+accept: application/json
 
-###
-# Up/Down Vote Question
-# If you want to up-vote -> 1 || down-vote -> 0
-
-POST http://localhost:8000/v1/vote/
-Content-Type: application/json
-
-{
-  "question_id": 6,
-  "choice_id": 1,
-  "vote": 1
-}
-
-###
 
 
 

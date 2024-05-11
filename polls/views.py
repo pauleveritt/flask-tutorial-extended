@@ -1,15 +1,16 @@
-from . import serializers
-from .models import Question, Choice
-from flask import request
-from flask_restx import Resource
-from . import serializers
-from .main import db, ns
 import json
 
+from flask import request
+from flask_restx import Resource
 
-@ns.route('/questions')
+from polls import serializers
+from polls.main import db, ns
+from polls.models import Question, Choice
+
+
+@ns.route("/questions")
 class QuestionList(Resource):
-    @ns.marshal_with(serializers.question_serializer, envelope='questions')
+    @ns.marshal_with(serializers.question_serializer, envelope="questions")
     def get(self):
         return Question.query.all()
 
@@ -17,8 +18,8 @@ class QuestionList(Resource):
     @ns.marshal_with(serializers.question_choice_serializer, code=201)
     def post(self):
         data = json.loads(request.data.decode())
-        question_text = data['question_text']
-        choices = data['choices']
+        question_text = data["question_text"]
+        choices = data["choices"]
 
         # Create the question
         question = Question(question_text=question_text)
@@ -31,10 +32,10 @@ class QuestionList(Resource):
             db.session.add(choice)
         db.session.commit()
 
-        return {'question_text': question_text, 'choices': choices}, 201
+        return {"question_text": question_text, "choices": choices}, 201
 
 
-@ns.route('/questions/<int:question_id>')
+@ns.route("/questions/<int:question_id>")
 class QuestionDetail(Resource):
     @ns.marshal_with(serializers.question_serializer)
     def get(self, question_id):
@@ -44,8 +45,8 @@ class QuestionDetail(Resource):
     @ns.marshal_with(serializers.question_choice_serializer)
     def put(self, question_id):
         data = json.loads(request.data.decode())
-        question_text = data['question_text']
-        choices = data['choices']
+        question_text = data["question_text"]
+        choices = data["choices"]
 
         # Update the question text
         question = Question.query.get_or_404(question_id)
@@ -59,11 +60,11 @@ class QuestionDetail(Resource):
 
         db.session.commit()
 
-        return {'question_text': question_text, 'choices': choices}
+        return {"question_text": question_text, "choices": choices}
 
-    @ns.response(204, 'Question deleted')
+    @ns.response(204, "Question deleted")
     def delete(self, question_id):
         question = Question.query.get_or_404(question_id)
         db.session.delete(question)
         db.session.commit()
-        return '', 204
+        return "", 204
