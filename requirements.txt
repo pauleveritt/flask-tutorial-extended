@@ -1,6 +1,6 @@
 -e .
-flask~=3.0.3
-sqlalchemy
+Flask~=3.0.3
+SQLAlchemy
 black
 uvicorn
 pytest~=8.2.0
