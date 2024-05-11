@@ -1,0 +1,51 @@
+# Get list of questions
+GET http://127.0.0.1:5000/polls/questions
+accept: application/json
+
+
+
+###
+# Create a new question
+POST http://127.0.0.1:5000/polls/questions
+accept: application/json
+Content-Type: application/json
+
+{
+    "question_text": "What is your favorite color?",
+    "choices": [
+        "Red",
+        "Blue",
+        "Green"
+    ]
+}
+
+###
+# Get Question by ID
+GET http://127.0.0.1:5000/polls/questions/1
+accept: application/json
+
+###
+
+# Update Question by ID
+PUT http://127.0.0.1:5000/polls/questions/1
+accept: application/json
+Content-Type: application/json
+
+{
+    "question_text": "Which color you like the most?",
+    "choices": [
+        "Red",
+        "Blue",
+        "Green",
+        "Yellow"
+    ]
+}
+
+###
+# Delete Question by ID
+DELETE http://127.0.0.1:5000/polls/questions/1
+accept: application/json
+
+
+
+
