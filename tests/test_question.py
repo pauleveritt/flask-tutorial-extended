@@ -1,13 +1,12 @@
 import os
 
 import pytest
-from polls.main import app, db, DB_NAME
-from polls.models import Question, Choice
+
+from polls.main import app, db
 
 
 @pytest.fixture
 def client():
-
     with app.test_client() as client:
         with app.app_context():
             db.create_all()
@@ -21,7 +20,7 @@ def test_post_question(client):
     # Send POST request to create a new question with choices
     data = {
         "question_text": "What is your favorite programming language?",
-        "choices": ["Python", "Java", "JavaScript"]
+        "choices": ["Python", "Java", "JavaScript"],
     }
-    response = client.post('/polls/questions', json=data)
+    response = client.post("/polls/questions", json=data)
     assert response.status_code == 201
