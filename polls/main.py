@@ -1,6 +1,19 @@
+import os
+import click
 from flask import Flask
 from flask_restx import Api
 from flask_sqlalchemy import SQLAlchemy
+
+from flask.cli import with_appcontext
+
+APP_ENV = os.getenv("APP_ENV", default="development")
+
+if APP_ENV == "development":
+    DB_NAME = "sqlite:///database.db"
+elif APP_ENV == "testing":
+    DB_NAME = "sqlite:///test.db"
+else:
+    raise NotImplementedError("DB NAME Missing!")
 
 app = Flask(__name__)
 
@@ -16,7 +29,17 @@ from polls import views  # noqa: E402
 with app.app_context():
     db.create_all()
 
-if __name__ == "__main__":
+
+@click.command(name='seed')
+@with_appcontext
+def seed():
+    from .seed import create_seed_data
+    create_seed_data()
+
+
+# Register Commands
+app.cli.add_command(seed)
+if __name__ == '__main__':
     # Prevent the polls.view import from being cleaned up
-    print(f"Importing views from {views}")
+    print(f'Importing views from {views}')
     app.run(debug=True)
