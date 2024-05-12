@@ -72,5 +72,18 @@ class QuestionDetail(Resource):
 
 # Some HTML routes
 @app.route("/polls/")
-def index():
-    return render_template("index.html")
+def index_html():
+    questions = Question.query.all()
+    return render_template("index.html", questions=questions)
+
+
+@app.route("/polls/questions/")
+def questions_html():
+    questions = Question.query.all()
+    return render_template("questions.html", questions=questions)
+
+
+@app.route("/polls/questions/<int:question_id>")
+def question_html(question_id: int):
+    question = Question.query.get_or_404(question_id)
+    return render_template("question.html", question=question)

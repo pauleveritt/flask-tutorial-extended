@@ -7,6 +7,7 @@ class Question(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     question_text = db.Column(db.String(200))
     pub_date = db.Column(db.DateTime, default=datetime.now())
+    choices = db.relationship('Choice', backref='question', lazy='dynamic')
 
     def was_published_recently(self):
         now = datetime.now()
