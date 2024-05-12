@@ -5,6 +5,7 @@ from polls.main import api
 question_serializer = api.model(
     "Question",
     {
+        "id": fields.Integer,
         "question_text": fields.String(required=True, description="Question text"),
     },
 )

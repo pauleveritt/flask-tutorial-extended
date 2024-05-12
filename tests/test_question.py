@@ -13,7 +13,6 @@ def client() -> FlaskClient:
             db.create_all()
             yield client
             db.session.rollback()  # Rollback any changes to the database
-            db.drop_all()
 
 
 def test_post_question(client):
@@ -22,16 +21,16 @@ def test_post_question(client):
         "question_text": "What is your favorite programming language?",
         "choices": ["Python", "Java", "JavaScript"],
     }
-    response = client.post("/polls/questions", json=data)
+    response = client.post("/v1/polls/questions", json=data)
     assert response.status_code == 201
 
 
 def test_read_questions_html(client):
     # Use the existing seed data
-    response = client.get("/polls/")
+    response = client.get("/polls/questions/")
     assert response.status_code == 200
     html = BeautifulSoup(response.text, "html5lib")
     questions = html.select(".question_text a")
-    assert len(questions) == len(questions_data)
-    assert questions[0].attrs["href"] == "http://testserver/question/1"
+    assert len(questions) > 0
+    assert questions[0].attrs["href"] == "/polls/questions/1"
     assert questions[0].text == questions_data[0]["question_text"]

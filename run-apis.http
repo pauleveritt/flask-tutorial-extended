@@ -1,5 +1,5 @@
 # Get HTML home page
-GET http://localhost:5000/polls/
+GET http://127.0.0.1:5000/polls/
 
 ###
 # Get list of questions

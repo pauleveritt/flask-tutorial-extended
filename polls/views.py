@@ -10,7 +10,7 @@ from polls.models import Question, Choice
 
 @ns.route("/questions")
 class QuestionList(Resource):
-    @ns.marshal_with(serializers.question_serializer, envelope="questions")
+    @ns.marshal_with(serializers.question_serializer)
     def get(self):
         return Question.query.all()
 
